@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>generador</title>
+  </head>
+  <body>
+    <a href="http://localhost:3000/react-app/public/index.html">ds</a>
+    <h1>Generador NFT</h1>
+    <img src="" id="imagen" alt="" />
+    <div id="token"></div>
+    <button onclick="gen()">generador</button>
+  </body>
+  <script>
+    function gen() {
+      var result = fetch("/generador").then((x) => {
+        x.text().then((y) => {
+          var pro = JSON.parse(y);
+          console.log(pro);
+          document.getElementById("imagen").src = pro.imagenes[0];
+          document.getElementById(
+            "token"
+          ).innerHTML = `<pre> ${pro.jsonContract}  </pre>`;
+        });
+      });
+    }
+  </script>
+  <!-- <script src="../../routes/ruta.js"></script> -->
+</html>
